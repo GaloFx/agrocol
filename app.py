@@ -51,16 +51,20 @@ DATA_DIR = ROOT / "data"
 
 # Rutas candidatas (prioridad: data/ del proyecto → rutas conocidas → cwd)
 CANDIDATE_PRECIOS = [
+    DATA_DIR / "Precios_agricolas_consolidados_2019_2024.csv.gz",
     DATA_DIR / "Precios_agricolas_consolidados_2019_2024.csv",
     DATA_DIR / "Precios_agricolas_consolidados_2019_2024.xlsx",
     Path("/home/workdir/attachments/Precios_agricolas_consolidados_2019_2024.csv"),
+    ROOT / "Precios_agricolas_consolidados_2019_2024.csv.gz",
     ROOT / "Precios_agricolas_consolidados_2019_2024.csv",
     Path("Precios_agricolas_consolidados_2019_2024.csv"),
 ]
 CANDIDATE_EVA = [
+    DATA_DIR / "EVA_COLOMBIA_AGRICOLA.csv.gz",
     DATA_DIR / "EVA_COLOMBIA_AGRICOLA.csv",
     DATA_DIR / "EVA COLOMBIA AGRICOLA.csv",
     Path("/home/workdir/attachments/EVA COLOMBIA AGRICOLA.csv"),
+    ROOT / "EVA_COLOMBIA_AGRICOLA.csv.gz",
     ROOT / "EVA COLOMBIA AGRICOLA.csv",
     Path("EVA COLOMBIA AGRICOLA.csv"),
 ]
@@ -407,8 +411,8 @@ Estado actual de la sesión:
 
     st.markdown("---")
     st.markdown("**Carga manual (opcional)** — útil si los archivos no están en disco:")
-    f_prec = st.file_uploader("Precios consolidados (CSV / Excel)", type=["csv", "xlsx", "xls"])
-    f_eva = st.file_uploader("EVA Colombia (CSV / Excel)", type=["csv", "xlsx", "xls"])
+    f_prec = st.file_uploader("Precios consolidados (CSV / Excel)", type=["csv", "xlsx", "xls", "gz"])
+    f_eva = st.file_uploader("EVA Colombia (CSV / Excel)", type=["csv", "xlsx", "xls", "gz"])
     if st.button("Cargar y activar modo REAL", type="primary"):
         msg = engine.cargar_archivos(f_prec, f_eva)
         # Invalidate cache so next get_engine sees REAL data if needed
